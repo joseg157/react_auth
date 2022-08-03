@@ -1,7 +1,10 @@
+import Login from "containers/Login"
 
 const App = () => {
     return (
-        <div>App</div>
+        <main className="App">
+            <Login />
+        </main>
     )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from 'containers/App';
-import MuiThemeProvider from 'styles/MuiThemeProvider';
+import AppProvider from 'context/AppProvider';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -9,9 +9,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <MuiThemeProvider>
+    <AppProvider>
       <App />
-    </MuiThemeProvider>
+    </AppProvider>
   </React.StrictMode>
 );
 

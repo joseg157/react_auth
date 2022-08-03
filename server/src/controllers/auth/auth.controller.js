@@ -11,7 +11,7 @@ const handleLogin = async (req, res) => {
     const match = await validateUserPassword(pwd, foundUser.password)
 
     if (match) {
-        const roles = Object.values(foundUser.roles)
+        const roles = Object.values(foundUser.roles).filter(Boolean)
         // create JWT LATER
         const accessToken = createAccessToken(foundUser.username, roles)
 
@@ -24,7 +24,7 @@ const handleLogin = async (req, res) => {
         // httpOnly is not available on javacsript
         res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 }); // units in milliseconds
 
-        res.json({ accessToken })
+        res.json({ accessToken, roles })
     }
     else {
         res.sendStatus(401);
