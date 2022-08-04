@@ -13,6 +13,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
+// routes
+app.use('/register', require('./routes/register'))
+app.use('/auth', require('./routes/auth'))
+
 // Catch not existing middleware
 app.use(unknownEndPoint)
 
