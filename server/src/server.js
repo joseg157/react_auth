@@ -1,5 +1,6 @@
 const app = require('./app')
 const { unknownEndPoint, errorHandler } = require('./middlewares/errors')
+const { verifyJWT } = require('./middlewares/verifyJWT')
 
 const PORT = process.env.PORT || 5000
 
@@ -16,6 +17,12 @@ app.get('/', (req, res) => {
 // routes
 app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
+
+// Protect routes
+app.use('/logout', require('./routes/logout'))
+app.use('/refresh', require('./routes/refresh'))
+app.use(verifyJWT)
+app.use('/private', require('./routes/api/private'))
 
 // Catch not existing middleware
 app.use(unknownEndPoint)

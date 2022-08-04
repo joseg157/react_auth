@@ -1,8 +1,5 @@
-const usersDB = {
-    users: require('../../models/fakeDB/users.json'),
-    setUsers: function (data) { this.users = data }
-}
-const { validateUserUsername, validateUserPassword } = require('../../services/auth')
+const { validateUserUsername, validateUserPassword, createAccessToken, createRefreshToken, saveRefreshToken } = require('../../services/auth')
+
 
 const handleLogin = async (req, res) => {
     const { user, pwd } = req.body;
@@ -15,7 +12,18 @@ const handleLogin = async (req, res) => {
 
     if (match) {
         // create JWT LATER
-        res.json({ 'sucess': `User ${user} is logged in!` })
+        const accessToken = createAccessToken(foundUser.username)
+
+        const refreshToken = createRefreshToken(foundUser.username)
+
+        // saving refresh token with current user
+        await saveRefreshToken(foundUser, refreshToken);
+
+        // ? Note store access token IN memory for front end user
+        // httpOnly is not available on javacsript
+        res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 }); // units in milliseconds
+
+        res.json({ accessToken })
     }
     else {
         res.sendStatus(401);
