@@ -3,8 +3,8 @@ import { useForm, FormProvider, SubmitHandler } from "react-hook-form"
 import Container from "@mui/material/Container";
 import Box from '@mui/material/Box';
 
-import { DefaultValues } from "interfaces/LogIn";
-import { defaultValues } from "constants/Login";
+import { DefaultValues } from "services/interfaces/LogIn";
+import { defaultValues } from "services/constants/Login";
 
 import { AvatarLock, Copyright, UsernameInput, ErrorMessage, PasswordInput, LoginButton, SignInMessage, SuccessMessage } from './components';
 import { useAuth } from 'auth/AuthProvider';

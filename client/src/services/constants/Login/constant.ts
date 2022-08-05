@@ -1,4 +1,4 @@
-import { DefaultValues, PropsConstants } from "interfaces/LogIn";
+import { DefaultValues, PropsConstants } from "services/interfaces/LogIn";
 
 export const defaultValues: DefaultValues = {
     username: '',

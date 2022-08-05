@@ -1,6 +1,6 @@
 import { MuiTextField } from 'components/Input';
 import { useLogInContextWithHookForm } from 'hooks';
-import { constant } from "constants/Login";
+import { constant } from "services/constants/Login";
 
 
 const PasswordInput = () => {

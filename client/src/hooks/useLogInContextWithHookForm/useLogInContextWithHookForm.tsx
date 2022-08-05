@@ -1,5 +1,5 @@
 import { useFormContext, useController } from "react-hook-form"
-import { DefaultValues } from "interfaces/LogIn"
+import { DefaultValues } from "services/interfaces/LogIn"
 
 const useLogInContextWithHookForm = (givingName: keyof DefaultValues) => {
 
