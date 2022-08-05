@@ -6,11 +6,17 @@ import { MuiTextField } from 'components/Input';
 
 const UsernameInput = () => {
     const { name, className, labelName } = constant.emailProp
+    const emailEffectRan = useRef(false)
     const emailRef = useRef<HTMLInputElement>(null)
     const context = useLogInContextWithHookForm(name);
 
     useEffect(() => {
-        emailRef.current && emailRef.current.focus()
+
+        (emailRef.current && emailEffectRan.current === false) && emailRef.current.focus()
+        
+        return () => {
+            emailEffectRan.current = true
+        }
     }, [])
 
     return (
