@@ -1,4 +1,3 @@
-require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
@@ -20,9 +19,15 @@ const validateUserPassword = async (pwd, databasePassword) => {
     return await bcrypt.compare(pwd, databasePassword)
 }
 
-const createAccessToken = (username) => {
+const createAccessToken = (username, roles) => {
+    
     return jwt.sign(
-        { "username": username },
+        {
+            "UserInfo": {
+                "username": username,
+                "roles": roles
+            }
+        },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '30s' } // ! Change duration (5 - 15 mins) for production usage
     );

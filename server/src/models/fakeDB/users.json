@@ -1,3 +1,29 @@
 [
-    
+    {
+        "username": "test",
+        "roles": {
+            "Admin": 1111,
+            "Editor": 2222,
+            "User": 3333
+        },
+        "password": "$2b$10$ldMMGfSeWPcrftKMnjFOyeLjCo9ud0K1o2iZQChAKJ1IqZW8uYZ5q",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NTk2NzAxODQsImV4cCI6MTY1OTc1NjU4NH0.1fqsILNTC7oJau-CrbHC4WU27WbNnm2PYJmCKIEguhQ"
+    },
+    {
+        "username": "test2",
+        "roles": {
+            "Editor": 2222
+        },
+        "password": "$2b$10$yYqvZNO856a6SUt1I5qQqua2QLbSYMkPTQsNKXTahZt9I83jFPFJe",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwiaWF0IjoxNjU5NjcwMjM1LCJleHAiOjE2NTk3NTY2MzV9.fFu7FaEcc7V2DX-SCoqiF_yX3q1DoXlC1mD7KzcxUSY"
+    },
+    {
+        "username": "test3",
+        "roles": {
+            "Editor": 2222,
+            "User": 3333
+        },
+        "password": "$2b$10$tCMqzpPh0qFXlsQndbgR8uZ2hkip6.8xAJh1ZtO8T9t97.KyuHdUm",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QzIiwiaWF0IjoxNjU5NjczNzYyLCJleHAiOjE2NTk3NjAxNjJ9.WeuwCeNtKJKER_VRnYK3LSfSVKdF8DTMW0S9JbBFKrA"
+    }
 ]

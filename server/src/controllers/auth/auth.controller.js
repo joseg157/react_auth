@@ -11,8 +11,9 @@ const handleLogin = async (req, res) => {
     const match = await validateUserPassword(pwd, foundUser.password)
 
     if (match) {
+        const roles = Object.values(foundUser.roles)
         // create JWT LATER
-        const accessToken = createAccessToken(foundUser.username)
+        const accessToken = createAccessToken(foundUser.username, roles)
 
         const refreshToken = createRefreshToken(foundUser.username)
 
