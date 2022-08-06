@@ -1,4 +1,4 @@
-import React, { createContext, SetStateAction, useContext, useState } from "react";
+import React, { createContext, SetStateAction, useState } from "react";
 
 interface info {
     username: string | null;
@@ -39,6 +39,5 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     )
 }
 
-export const useAuth = () => useContext(AuthContext);
 
 export default AuthProvider

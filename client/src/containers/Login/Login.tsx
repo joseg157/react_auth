@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form"
+import useAuthContext from 'auth/useAuthContext';
+
 import Container from "@mui/material/Container";
 import Box from '@mui/material/Box';
 
@@ -7,12 +9,12 @@ import { DefaultValues } from "services/interfaces/LogIn";
 import { defaultValues } from "services/constants/Login";
 
 import { AvatarLock, Copyright, UsernameInput, ErrorMessage, PasswordInput, LoginButton, SignInMessage, SuccessMessage } from './components';
-import { useAuth } from 'auth/AuthProvider';
 
 import axios, { AxiosError } from 'axios';
 
+
 const LogIn = () => {
-    const { setAuth } = useAuth()
+    const { setAuth } = useAuthContext()
 
     const methods = useForm<DefaultValues>({ defaultValues: defaultValues })
     const { handleSubmit, reset } = methods;
