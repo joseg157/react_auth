@@ -1,5 +1,6 @@
 import AuthProvider from "auth/AuthProvider"
 import MuiThemeProvider from "styles/MuiThemeProvider"
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 interface AppProviderProps {
     children: React.ReactNode
@@ -7,11 +8,15 @@ interface AppProviderProps {
 
 const AppProvider = ({ children }: AppProviderProps) => {
     return (
-        <AuthProvider>
+        <BrowserRouter>
             <MuiThemeProvider>
-                {children}
+                <AuthProvider>
+                    <Routes>
+                        <Route path='/*' element={children} />
+                    </Routes>
+                </AuthProvider>
             </MuiThemeProvider>
-        </AuthProvider>
+        </BrowserRouter>
     )
 }
 

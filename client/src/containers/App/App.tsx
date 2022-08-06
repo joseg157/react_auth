@@ -1,10 +1,15 @@
-import Login from "containers/Login"
+import { Routes, Route } from 'react-router-dom'
+import { PrivateRoute, PublicRoute } from 'routes'
 
 const App = () => {
     return (
-        <main className="App">
-            <Login />
-        </main>
+        <Routes>
+
+            <Route path="/*" element={<PublicRoute />} />
+
+            <Route path="profile/*" element={<PrivateRoute />} />
+
+        </Routes>
     )
 }
 

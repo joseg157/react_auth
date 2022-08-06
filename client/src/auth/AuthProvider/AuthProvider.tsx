@@ -4,7 +4,7 @@ interface info {
     username: string | null;
     password: string | null;
     accessToken: string | null;
-    roles: string[] | null
+    roles: number[] | null
 }
 
 interface AuthContextInterface {

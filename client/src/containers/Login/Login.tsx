@@ -1,25 +1,35 @@
 import { useState } from 'react'
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form"
-import useAuthContext from 'auth/useAuthContext';
-
+import { useNavigate, useLocation } from 'react-router-dom'
 import Container from "@mui/material/Container";
 import Box from '@mui/material/Box';
+
+import useAuthContext from 'auth/useAuthContext';
 
 import { DefaultValues } from "services/interfaces/LogIn";
 import { defaultValues } from "services/constants/Login";
 
-import { AvatarLock, Copyright, UsernameInput, ErrorMessage, PasswordInput, LoginButton, SignInMessage, SuccessMessage } from './components';
+import { AvatarLock, Copyright, UsernameInput, ErrorMessage, PasswordInput, LoginButton, SignInMessage } from './components';
 
 import axios, { AxiosError } from 'axios';
 
+interface LocationState {
+    from: {
+        pathname: string
+    }
+}
 
 const LogIn = () => {
     const { setAuth } = useAuthContext()
 
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = (location.state as LocationState)?.from?.pathname || "/";
+
     const methods = useForm<DefaultValues>({ defaultValues: defaultValues })
     const { handleSubmit, reset } = methods;
 
-    const [success, setSucess] = useState(false)
     const [errorMsg, setErrMsg] = useState('');
 
 
@@ -34,12 +44,13 @@ const LogIn = () => {
                 }
             );
             const accessToken = response?.data?.accessToken as string;
-            const roles = response?.data?.roles as string[];
-            console.log(accessToken, roles)
+            const roles = response?.data?.roles as number[];
+
             setAuth({ ...data, accessToken: accessToken, roles: roles })
             reset();
             setErrMsg('');
-            setSucess(true);
+            navigate(from, { replace: true });
+
         }
         catch (err) {
             if (axios.isAxiosError(err)) {
@@ -56,39 +67,19 @@ const LogIn = () => {
     };
 
     return (
-        <>
-            {
-                success ? (
-                    <SuccessMessage />
-                ) : (
-                    <Container className='login_container' maxWidth='xs'>
-
-                        <ErrorMessage msg={errorMsg} />
-
-                        <AvatarLock />
-
-                        <SignInMessage />
-
-                        <Box component="form" className="login_form" onSubmit={handleSubmit(onSubmit)}>
-
-                            <FormProvider {...methods}>
-
-                                <UsernameInput />
-
-                                <PasswordInput />
-
-                            </FormProvider>
-
-                            <LoginButton />
-
-                            <Copyright />
-
-                        </Box>
-
-                    </Container>
-                )
-            }
-        </>
+        <Container className='login_container' maxWidth='xs'>
+            <ErrorMessage msg={errorMsg} />
+            <AvatarLock />
+            <SignInMessage />
+            <Box component="form" className="login_form" onSubmit={handleSubmit(onSubmit)}>
+                <FormProvider {...methods}>
+                    <UsernameInput />
+                    <PasswordInput />
+                </FormProvider>
+                <LoginButton />
+                <Copyright />
+            </Box>
+        </Container>
     )
 }
 
